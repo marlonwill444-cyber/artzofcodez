@@ -16,7 +16,7 @@ from typing import Dict, Any
 import requests
 
 
-API_KEY = os.environ.get("LEONARDO_API_KEY")
+_API_KEY = os.environ.get("LEONARDO_API_KEY")
 """
 Your Leonardo Production API key. Keep this value secret. Set this value via an
 environment variable (e.g., LEONARDO_API_KEY) instead of hard‑coding it here.
@@ -28,12 +28,12 @@ ANIME_XL_MODEL_ID = "e71a1c2f-4f80-4800-934f-2c68979d8cc8"
 
 def _make_headers() -> Dict[str, str]:
     """Builds the authorization headers for API requests."""
-    if not API_KEY:
+    if not _API_KEY:
         raise RuntimeError(
             "LEONARDO_API_KEY environment variable is required for API calls."
         )
     return {
-        "Authorization": f"Bearer {API_KEY}",
+        "Authorization": f"Bearer {_API_KEY}",
         "Content-Type": "application/json",
     }
 
