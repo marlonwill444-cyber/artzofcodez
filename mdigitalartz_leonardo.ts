@@ -12,12 +12,21 @@
 
 import axios from 'axios';
 
-// Your Leonardo Production API key. Keep it secret. You could also load it
-// from an environment variable like process.env.LEONARDO_API_KEY.
-const API_KEY: string = 'cd8d7691-5ec5-48e1-9c6b-7160900f59a5';
+// Your Leonardo Production API key. Keep it secret. Load it from an environment
+// variable like process.env.LEONARDO_API_KEY rather than hard-coding it.
+const API_KEY: string | undefined = process.env.LEONARDO_API_KEY;
 
 const PHOENIX_MODEL_ID = 'de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3';
 const ANIME_XL_MODEL_ID = 'e71a1c2f-4f80-4800-934f-2c68979d8cc8';
+
+function requireApiKey(): string {
+  if (!API_KEY) {
+    throw new Error(
+      'LEONARDO_API_KEY environment variable is required for API calls.'
+    );
+  }
+  return API_KEY;
+}
 
 /**
  * Sends a POST request to generate images with the Phoenix 1.0 model.
@@ -51,13 +60,13 @@ export async function generateImagesPhoenix(
   };
   const response = await axios.post(
     'https://cloud.leonardo.ai/api/rest/v1/generations',
-    payload,
-    {
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-    }
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${requireApiKey()}`,
+          'Content-Type': 'application/json',
+        },
+      }
   );
   return response.data;
 }
@@ -91,13 +100,13 @@ export async function generateImagesAnimeXL(
   };
   const response = await axios.post(
     'https://cloud.leonardo.ai/api/rest/v1/generations',
-    payload,
-    {
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-    }
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${requireApiKey()}`,
+          'Content-Type': 'application/json',
+        },
+      }
   );
   return response.data;
 }
@@ -112,7 +121,7 @@ export async function fetchGeneration(generationId: string): Promise<any> {
     `https://cloud.leonardo.ai/api/rest/v1/generations/${generationId}`,
     {
       headers: {
-        Authorization: `Bearer ${API_KEY}`,
+        Authorization: `Bearer ${requireApiKey()}`,
       },
     }
   );
@@ -147,13 +156,13 @@ export async function upscaleImage(
   };
   const response = await axios.post(
     'https://cloud.leonardo.ai/api/rest/v1/variations/universal-upscaler',
-    payload,
-    {
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-    }
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${requireApiKey()}`,
+          'Content-Type': 'application/json',
+        },
+      }
   );
   return response.data;
 }
