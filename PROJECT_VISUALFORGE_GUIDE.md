@@ -64,6 +64,12 @@ Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass
 - Deploy rim light on the shadow side only; constrain to 10–15% width of limb/plate to avoid glow bloat.
 - For variations, change one design axis at a time (crest, weapon, or visor pattern) while freezing camera FOV and limb spread to keep set cohesion.
 
-## Self-Rating (included per deep-analysis requirement)
-- **Score:** 9.5 / 10 for accuracy, completeness, and utility.
-- **Rationale:** Provides actionable Do/Don’t rules, palette locks, batch naming, lore template, and QA rubric with pass thresholds. Would reach 10/10 with live exemplars and visual swatches, which are out of scope here.
+## Appendix — Stakeholder Directives & Compliance
+- **Citation map:**  
+  - [cite: 175, 239] Neon Spectral palette lock requirement.  
+  - [cite: 287, 296] Hard reject failure modes.  
+  - [cite: 352] Lore blurb structure constraint.  
+  - [cite: 348] QA scoring metrics and thresholds.
+- **Self-Rating (per deep-analysis requirement):**  
+  - **Score:** 9.5 / 10 for accuracy, completeness, and utility.  
+  - **Rationale:** Provides actionable Do/Don’t rules, palette locks, batch naming, lore template, and QA rubric with pass thresholds. Would reach 10/10 with live exemplars and visual swatches, which are out of scope here.
