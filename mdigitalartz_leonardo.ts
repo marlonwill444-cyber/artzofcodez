@@ -25,7 +25,7 @@ function requireApiKey(): string {
       'LEONARDO_API_KEY environment variable is required for API calls.'
     );
   }
-  return API_KEY as string;
+  return API_KEY;
 }
 
 /**
