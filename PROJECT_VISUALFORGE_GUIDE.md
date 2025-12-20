@@ -34,7 +34,7 @@
 - **Naming convention:** `SERIES01_CHAR01_VARIANT01` … `SERIES01_CHAR08_VARIANT01` (series ↔ character slot ↔ variant). For alternate colorways, increment VARIANT.
 - **Product title template:** `Bio-Armor [Series Code] — [Callsign] // [Signature Mechanism]` (e.g., “Bio-Armor S01 — Asterion // Photon Rampart”).
 - **Lore blurb structure (short, copyright-safe)** [cite: 352]:
-  1. Sentence 1: Origin hint + role (“Forged in orbital drydocks, designed as vanguard tank.”).
+  1. Sentence 1: Origin hint + role (“Forged in orbital dry docks, designed as vanguard tank.”).
   2. Sentence 2: Capability hook + palette callout (“Neon teal conduits channel shock-lances; magenta sigils appear only at full charge.”).
   3. Sentence 3 (optional): Limiter/quirk for personality without trademarked IP (“Cannot deploy in vacuum longer than 11 minutes without coolant purge.”).
 - **Consistency tactics:** Shared skeletal rig and camera distance; lock seed for pose family; reuse silhouette anchors (pauldrons/helm crest) per slot; change only one hero motif per variant (weapon or crest), not both.
@@ -54,7 +54,7 @@ Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass
 - Line weight hierarchy present (outer > inner) and edges closed.
 - Two-value cel shading; rim light band separated, no soft airbrush.
 - Silhouette readable at 64px; head/torso/weapon separation visible.
-- Anatomy adult-scale; no dwarfing; joints/foreshortening plausible.
+- Anatomy adult-scale; no disproportionate scaling (dwarfing); joints/foreshortening plausible.
 - No text, logos, watermarks, or copyrighted motifs.
 - No noise, smear, or compression artifacts on glow edges.
 
@@ -70,6 +70,6 @@ Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass
   - [cite: 287, 296] Hard reject failure modes.  
   - [cite: 352] Lore blurb structure constraint.  
   - [cite: 348] QA scoring metrics and thresholds.
-- **Self-Rating (per deep-analysis requirement):**  
+- **Self-Rating (per deep-analysis requirement; internal compliance):**  
   - **Score:** 9.5 / 10 for accuracy, completeness, and utility.  
   - **Rationale:** Provides actionable Do/Don’t rules, palette locks, batch naming, lore template, and QA rubric with pass thresholds. Would reach 10/10 with live exemplars and visual swatches, which are out of scope here.
