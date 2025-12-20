@@ -54,7 +54,7 @@ Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass
 - Line weight hierarchy present (outer > inner) and edges closed.
 - Two-value cel shading; rim light band separated, no soft airbrush.
 - Silhouette readable at 64px; head/torso/weapon separation visible.
-- Anatomy adult-scale; no disproportionate scaling (dwarfing); joints/foreshortening plausible.
+- Anatomy adult-scale; no disproportionate scaling (dwarfism/chibi); joints/foreshortening plausible.
 - No text, logos, watermarks, or copyrighted motifs.
 - No noise, smear, or compression artifacts on glow edges.
 
