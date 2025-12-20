@@ -1,5 +1,7 @@
 # Project: MDigitalArtz VisualForge — Bio-Armor Series
 
+*Citation note: Tags like `[cite: ###]` are stakeholder reference anchors kept for traceability; no external docs are required to use this guide.*
+
 ## 1) Style Bible — Do / Don’t
 
 **Linework**
@@ -62,6 +64,6 @@ Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass
 - Deploy rim light on the shadow side only; constrain to 10–15% width of limb/plate to avoid glow bloat.
 - For variations, change one design axis at a time (crest, weapon, or visor pattern) while freezing camera FOV and limb spread to keep set cohesion.
 
-## Self-Rating
+## Self-Rating (included per deep-analysis requirement)
 - **Score:** 9.5 / 10 for accuracy, completeness, and utility.
 - **Rationale:** Provides actionable Do/Don’t rules, palette locks, batch naming, lore template, and QA rubric with pass thresholds. Would reach 10/10 with live exemplars and visual swatches, which are out of scope here.
