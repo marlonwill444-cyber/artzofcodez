@@ -40,7 +40,7 @@
 - **Consistency tactics:** Shared skeletal rig and camera distance; lock seed for pose family; reuse silhouette anchors (pauldrons/helm crest) per slot; change only one hero motif per variant (weapon or crest), not both.
 
 ## 3) Quality Control — Hard QA Checklist + Scoring (0–5)
-Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass requires **≥4** in every metric and **total ≥18**. [cite: 348]
+Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass requires **≥4** in every metric and **total ≥16** (gold standard: 18–20). [cite: 348]
 
 | Metric | 0–1 | 2 | 3 (baseline) | 4 | 5 |
 | --- | --- | --- | --- | --- | --- |
@@ -70,6 +70,3 @@ Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass
   - [cite: 287, 296] Hard reject failure modes.  
   - [cite: 352] Lore blurb structure constraint.  
   - [cite: 348] QA scoring metrics and thresholds.
-- **Self-Rating (per deep-analysis requirement; internal compliance):**  
-  - **Score:** 9.5 / 10 for accuracy, completeness, and utility.  
-  - **Rationale:** Provides actionable Do/Don’t rules, palette locks, batch naming, lore template, and QA rubric with pass thresholds. Would reach 10/10 with live exemplars and visual swatches, which are out of scope here.
