@@ -76,11 +76,12 @@ if __name__ == "__main__":
     
     prompt_aether_core = (
         "Ultra-detailed aerial poster, anime female adult 25-35, Bengus-style anatomy, "
-        "glide dive pose with clean foreshortening, sky-blue and yellow accent colors, "
-        "titanium base armor, crisp angular lines, air valves on torso, membrane wings extended, "
-        "ankle vanes visible, vent FX plumes with high legibility, atmospheric mist background, "
+        "glide dive pose with clean foreshortening, neon teal primary glow with yellow accent highlights, "
+        "titanium metal base armor with charcoal graphite panels, crisp angular lines, "
+        "air valves on torso, membrane wings extended, ankle vanes visible, "
+        "vent FX plumes with high legibility, atmospheric mist background, "
         "no capes, no bloom, no clutter, sharp mechanical details, "
-        "two-value cel shading, hard-edged rim light, clean silhouette separation."
+        "two-value cel shading, hard-edged rim light on shadow side, clean silhouette separation."
     )
     
     result = generate_images_phoenix(prompt_aether_core)
