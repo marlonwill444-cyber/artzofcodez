@@ -22,9 +22,9 @@ This document describes the performance optimizations made to the Leonardo API h
 - **Before**: Headers dictionary was recreated on every API call using `_make_headers()` function
 - **After**: 
   - Python: Headers cached as module-level `_HEADERS` constant
-  - TypeScript: Headers created by `getHeaders()` helper function
+  - TypeScript: Headers cached as module-level `HEADERS` constant
 - **Benefits**:
-  - Eliminates ~5-10 dictionary allocations per function call
+  - Eliminates dictionary/object allocations on every function call
   - Reduces string formatting overhead
   - Cleaner, more maintainable code
 

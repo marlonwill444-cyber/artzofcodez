@@ -17,7 +17,7 @@ def test_headers_caching():
     """Test that headers are cached and not recreated on every call."""
     print("Testing header caching...")
     
-    # Check that _HEADERS exists and is a dict
+    # Check that _HEADERS exists and is a dict in Python modules
     assert hasattr(mdigitalartz_leonardo, '_HEADERS'), "Missing _HEADERS constant"
     assert isinstance(mdigitalartz_leonardo._HEADERS, dict), "_HEADERS should be a dict"
     assert 'Authorization' in mdigitalartz_leonardo._HEADERS, "Missing Authorization header"
@@ -58,17 +58,17 @@ def test_environment_variable_support():
     """Test that API key can be read from environment variable."""
     print("\nTesting environment variable support...")
     
+    import importlib
+    
     # Test with mock environment variable
     with patch.dict('os.environ', {'LEONARDO_API_KEY': 'test-key-from-env'}):
         # Reload the module to pick up the environment variable
-        import importlib
         importlib.reload(mdigitalartz_leonardo)
         
         # The API_KEY should now be from the environment
         assert mdigitalartz_leonardo.API_KEY == 'test-key-from-env', "Should read API key from environment"
     
     # Reload again to restore original
-    import importlib
     importlib.reload(mdigitalartz_leonardo)
     
     print("✓ Environment variable support works")

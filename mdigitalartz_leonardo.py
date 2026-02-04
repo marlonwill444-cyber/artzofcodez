@@ -21,6 +21,12 @@ API_KEY = os.environ.get("LEONARDO_API_KEY", "cd8d7691-5ec5-48e1-9c6b-7160900f59
 Your Leonardo Production API key. Keep this value secret. Set via the
 LEONARDO_API_KEY environment variable. Falls back to a default key for
 backwards compatibility.
+
+Note: The environment variable must be set BEFORE importing this module.
+If you need to change the API key at runtime, set it before import:
+    import os
+    os.environ['LEONARDO_API_KEY'] = 'your-key'
+    import mdigitalartz_leonardo
 """
 
 PHOENIX_MODEL_ID = "de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3"

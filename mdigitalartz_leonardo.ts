@@ -23,15 +23,12 @@ const ANIME_XL_MODEL_ID = 'e71a1c2f-4f80-4800-934f-2c68979d8cc8';
 const REQUEST_TIMEOUT = 30000;
 
 /**
- * Returns the authorization headers for API requests.
- * Cached as a function to avoid repeated object creation.
+ * Cached authorization headers to avoid repeated object creation.
  */
-function getHeaders(): Record<string, string> {
-  return {
-    Authorization: `Bearer ${API_KEY}`,
-    'Content-Type': 'application/json',
-  };
-}
+const HEADERS: Record<string, string> = {
+  Authorization: `Bearer ${API_KEY}`,
+  'Content-Type': 'application/json',
+};
 
 /**
  * Sends a POST request to generate images with the Phoenix 1.0 model.
@@ -67,7 +64,7 @@ export async function generateImagesPhoenix(
     'https://cloud.leonardo.ai/api/rest/v1/generations',
     payload,
     {
-      headers: getHeaders(),
+      headers: HEADERS,
       timeout: REQUEST_TIMEOUT,
     }
   );
@@ -105,7 +102,7 @@ export async function generateImagesAnimeXL(
     'https://cloud.leonardo.ai/api/rest/v1/generations',
     payload,
     {
-      headers: getHeaders(),
+      headers: HEADERS,
       timeout: REQUEST_TIMEOUT,
     }
   );
@@ -121,7 +118,7 @@ export async function fetchGeneration(generationId: string): Promise<any> {
   const response = await axios.get(
     `https://cloud.leonardo.ai/api/rest/v1/generations/${generationId}`,
     {
-      headers: getHeaders(),
+      headers: HEADERS,
       timeout: REQUEST_TIMEOUT,
     }
   );
@@ -158,7 +155,7 @@ export async function upscaleImage(
     'https://cloud.leonardo.ai/api/rest/v1/variations/universal-upscaler',
     payload,
     {
-      headers: getHeaders(),
+      headers: HEADERS,
       timeout: REQUEST_TIMEOUT,
     }
   );
