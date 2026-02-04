@@ -51,10 +51,10 @@ When working with image generation prompts or quality control:
 - Consider backward compatibility with existing API calls
 
 ### Testing
-- This environment does not have network connectivity
-- Scripts cannot be fully tested without network access
-- Focus on code correctness, type safety, and API structure validation
-- Document expected API responses in comments
+- These scripts require network access to interact with the Leonardo API
+- When testing locally, ensure you have valid API credentials and network connectivity
+- In environments without network access, focus on code correctness, type safety, and API structure validation
+- Document expected API responses in comments for offline verification
 
 ### Documentation
 - Update docstrings/JSDoc comments when modifying function signatures
