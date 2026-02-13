@@ -33,7 +33,7 @@ if not API_KEY:
 
 ```typescript
 // TypeScript
-const API_KEY = process.env.LEONARDO_API_KEY;
+const API_KEY: string | undefined = process.env.LEONARDO_API_KEY;
 if (!API_KEY) {
   throw new Error("LEONARDO_API_KEY environment variable not set");
 }
