@@ -21,8 +21,8 @@ PHOENIX_MODEL_ID = "de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3"
 ANIME_XL_MODEL_ID = "e71a1c2f-4f80-4800-934f-2c68979d8cc8"
 
 
-def _make_headers() -> Dict[str, str]:
-    """Builds the authorization headers for API requests."""
+def _build_api_request_headers() -> Dict[str, str]:
+    """Builds the authorization headers for Leonardo API requests."""
     return {
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json",
@@ -57,7 +57,7 @@ def generate_images_phoenix(prompt: str, width: int = 1216, height: int = 1520,
     }
     response = requests.post(
         "https://cloud.leonardo.ai/api/rest/v1/generations",
-        headers=_make_headers(),
+        headers=_build_api_request_headers(),
         data=json.dumps(payload),
     )
     response.raise_for_status()
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     # Output: Poster A/B, FX plumes
     # Avoid: Bloom, clutter, bad foreshortening
     
-    prompt_aether_core = (
+    aether_core_image_prompt = (
         "Ultra-detailed aerial poster, anime female adult 25-35, Bengus-style anatomy, "
         "glide dive pose with clean foreshortening, neon teal primary glow with yellow accent highlights, "
         "titanium metal base armor with charcoal graphite panels, crisp angular lines, "
@@ -84,5 +84,5 @@ if __name__ == "__main__":
         "two-value cel shading, hard-edged rim light on shadow side, clean silhouette separation."
     )
     
-    result = generate_images_phoenix(prompt_aether_core)
-    print(json.dumps(result, indent=2))
+    phoenix_generation_result = generate_images_phoenix(aether_core_image_prompt)
+    print(json.dumps(phoenix_generation_result, indent=2))
