@@ -5,16 +5,17 @@ character brief for Aether Core with aerial poster, glide poses, and vent FX.
 """
 
 import json
+import os
 from typing import Dict, Any
 
 import requests
 
 
-API_KEY = "cd8d7691-5ec5-48e1-9c6b-7160900f59a5"
+API_KEY = os.environ.get("LEONARDO_API_KEY", "")
 """
-Your Leonardo Production API key. Keep this value secret. You can also set
-this value via an environment variable (e.g., LEONARDO_API_KEY) and read
-`os.environ["LEONARDO_API_KEY"]` instead of hard‑coding it here.
+Your Leonardo Production API key. Set the LEONARDO_API_KEY environment
+variable before running this script. Keep this value secret and never
+hard‑code it in source code.
 """
 
 PHOENIX_MODEL_ID = "de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3"
@@ -23,10 +24,12 @@ ANIME_XL_MODEL_ID = "e71a1c2f-4f80-4800-934f-2c68979d8cc8"
 
 def _make_headers() -> Dict[str, str]:
     """Builds the authorization headers for API requests."""
-    return {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json",
-    }
+    if not API_KEY:
+        raise ValueError(
+            "LEONARDO_API_KEY environment variable is not set. "
+            "Export it before running this script."
+        )
+    return {"Authorization": f"Bearer {API_KEY}"}
 
 
 def generate_images_phoenix(prompt: str, width: int = 1216, height: int = 1520,
@@ -58,7 +61,7 @@ def generate_images_phoenix(prompt: str, width: int = 1216, height: int = 1520,
     response = requests.post(
         "https://cloud.leonardo.ai/api/rest/v1/generations",
         headers=_make_headers(),
-        data=json.dumps(payload),
+        json=payload,
     )
     response.raise_for_status()
     return response.json()
