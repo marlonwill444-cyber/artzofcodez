@@ -10,28 +10,47 @@ environment with network access.
 """
 
 import json
-from typing import Dict, Any
+import os
+from typing import Dict, Any, Optional
 
 import requests
 
 
-API_KEY = "cd8d7691-5ec5-48e1-9c6b-7160900f59a5"
+API_KEY = os.environ.get("LEONARDO_API_KEY", "cd8d7691-5ec5-48e1-9c6b-7160900f59a5")
 """
-Your Leonardo Production API key. Keep this value secret. You can also set
-this value via an environment variable (e.g., LEONARDO_API_KEY) and read
-`os.environ["LEONARDO_API_KEY"]` instead of hard‑coding it here.
+Your Leonardo Production API key. Keep this value secret. Set via the
+LEONARDO_API_KEY environment variable. Falls back to a default key for
+backwards compatibility.
+
+Note: The environment variable must be set BEFORE importing this module.
+If you need to change the API key at runtime, set it before import:
+    import os
+    os.environ['LEONARDO_API_KEY'] = 'your-key'
+    import mdigitalartz_leonardo
 """
 
 PHOENIX_MODEL_ID = "de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3"
 ANIME_XL_MODEL_ID = "e71a1c2f-4f80-4800-934f-2c68979d8cc8"
 
+# Request timeout in seconds (connection timeout, read timeout)
+REQUEST_TIMEOUT = (10, 30)
 
-def _make_headers() -> Dict[str, str]:
-    """Builds the authorization headers for API requests."""
-    return {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json",
-    }
+# Cached authorization headers to avoid repeated dict allocation
+_HEADERS = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json",
+}
+
+# Reusable session for connection pooling
+_session: Optional[requests.Session] = None
+
+
+def _get_session() -> requests.Session:
+    """Returns a reusable requests session with connection pooling."""
+    global _session
+    if _session is None:
+        _session = requests.Session()
+    return _session
 
 
 def generate_images_phoenix(prompt: str, width: int = 1216, height: int = 1520,
@@ -60,10 +79,12 @@ def generate_images_phoenix(prompt: str, width: int = 1216, height: int = 1520,
         "alchemy": alchemy,
         "styleUUID": style_uuid,
     }
-    response = requests.post(
+    session = _get_session()
+    response = session.post(
         "https://cloud.leonardo.ai/api/rest/v1/generations",
-        headers=_make_headers(),
-        data=json.dumps(payload),
+        headers=_HEADERS,
+        json=payload,
+        timeout=REQUEST_TIMEOUT,
     )
     response.raise_for_status()
     return response.json()
@@ -92,10 +113,12 @@ def generate_images_anime_xl(prompt: str, width: int = 1216, height: int = 1520,
         "alchemy": alchemy,
         "presetStyle": preset_style,
     }
-    response = requests.post(
+    session = _get_session()
+    response = session.post(
         "https://cloud.leonardo.ai/api/rest/v1/generations",
-        headers=_make_headers(),
-        data=json.dumps(payload),
+        headers=_HEADERS,
+        json=payload,
+        timeout=REQUEST_TIMEOUT,
     )
     response.raise_for_status()
     return response.json()
@@ -109,7 +132,8 @@ def fetch_generation(generation_id: str) -> Dict[str, Any]:
     :return: The JSON response containing generation details and image URLs.
     """
     url = f"https://cloud.leonardo.ai/api/rest/v1/generations/{generation_id}"
-    response = requests.get(url, headers=_make_headers())
+    session = _get_session()
+    response = session.get(url, headers=_HEADERS, timeout=REQUEST_TIMEOUT)
     response.raise_for_status()
     return response.json()
 
@@ -136,10 +160,12 @@ def upscale_image(generated_image_id: str, upscale_multiplier: float = 1.5,
         "upscaleMultiplier": upscale_multiplier,
         "generatedImageId": generated_image_id,
     }
-    response = requests.post(
+    session = _get_session()
+    response = session.post(
         "https://cloud.leonardo.ai/api/rest/v1/variations/universal-upscaler",
-        headers=_make_headers(),
-        data=json.dumps(payload),
+        headers=_HEADERS,
+        json=payload,
+        timeout=REQUEST_TIMEOUT,
     )
     response.raise_for_status()
     return response.json()

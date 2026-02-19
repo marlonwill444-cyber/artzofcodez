@@ -14,10 +14,21 @@ import axios from 'axios';
 
 // Your Leonardo Production API key. Keep it secret. You could also load it
 // from an environment variable like process.env.LEONARDO_API_KEY.
-const API_KEY: string = 'cd8d7691-5ec5-48e1-9c6b-7160900f59a5';
+const API_KEY: string = process.env.LEONARDO_API_KEY || 'cd8d7691-5ec5-48e1-9c6b-7160900f59a5';
 
 const PHOENIX_MODEL_ID = 'de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3';
 const ANIME_XL_MODEL_ID = 'e71a1c2f-4f80-4800-934f-2c68979d8cc8';
+
+// Request timeout in milliseconds
+const REQUEST_TIMEOUT = 30000;
+
+/**
+ * Cached authorization headers to avoid repeated object creation.
+ */
+const HEADERS: Record<string, string> = {
+  Authorization: `Bearer ${API_KEY}`,
+  'Content-Type': 'application/json',
+};
 
 /**
  * Sends a POST request to generate images with the Phoenix 1.0 model.
@@ -53,10 +64,8 @@ export async function generateImagesPhoenix(
     'https://cloud.leonardo.ai/api/rest/v1/generations',
     payload,
     {
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        'Content-Type': 'application/json',
-      },
+      headers: HEADERS,
+      timeout: REQUEST_TIMEOUT,
     }
   );
   return response.data;
@@ -93,10 +102,8 @@ export async function generateImagesAnimeXL(
     'https://cloud.leonardo.ai/api/rest/v1/generations',
     payload,
     {
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        'Content-Type': 'application/json',
-      },
+      headers: HEADERS,
+      timeout: REQUEST_TIMEOUT,
     }
   );
   return response.data;
@@ -111,9 +118,8 @@ export async function fetchGeneration(generationId: string): Promise<any> {
   const response = await axios.get(
     `https://cloud.leonardo.ai/api/rest/v1/generations/${generationId}`,
     {
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-      },
+      headers: HEADERS,
+      timeout: REQUEST_TIMEOUT,
     }
   );
   return response.data;
@@ -149,10 +155,8 @@ export async function upscaleImage(
     'https://cloud.leonardo.ai/api/rest/v1/variations/universal-upscaler',
     payload,
     {
-      headers: {
-        Authorization: `Bearer ${API_KEY}`,
-        'Content-Type': 'application/json',
-      },
+      headers: HEADERS,
+      timeout: REQUEST_TIMEOUT,
     }
   );
   return response.data;
