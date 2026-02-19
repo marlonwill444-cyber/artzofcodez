@@ -26,8 +26,8 @@ PHOENIX_MODEL_ID = "de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3"
 ANIME_XL_MODEL_ID = "e71a1c2f-4f80-4800-934f-2c68979d8cc8"
 
 
-def _make_headers() -> Dict[str, str]:
-    """Builds the authorization headers for API requests."""
+def _build_api_request_headers() -> Dict[str, str]:
+    """Builds the authorization headers for Leonardo API requests."""
     return {
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ def generate_images_phoenix(prompt: str, width: int = 1216, height: int = 1520,
     }
     response = requests.post(
         "https://cloud.leonardo.ai/api/rest/v1/generations",
-        headers=_make_headers(),
+        headers=_build_api_request_headers(),
         data=json.dumps(payload),
     )
     response.raise_for_status()
@@ -94,7 +94,7 @@ def generate_images_anime_xl(prompt: str, width: int = 1216, height: int = 1520,
     }
     response = requests.post(
         "https://cloud.leonardo.ai/api/rest/v1/generations",
-        headers=_make_headers(),
+        headers=_build_api_request_headers(),
         data=json.dumps(payload),
     )
     response.raise_for_status()
@@ -108,8 +108,8 @@ def fetch_generation(generation_id: str) -> Dict[str, Any]:
     :param generation_id: The generationId returned from a create generation call.
     :return: The JSON response containing generation details and image URLs.
     """
-    url = f"https://cloud.leonardo.ai/api/rest/v1/generations/{generation_id}"
-    response = requests.get(url, headers=_make_headers())
+    generation_endpoint_url = f"https://cloud.leonardo.ai/api/rest/v1/generations/{generation_id}"
+    response = requests.get(generation_endpoint_url, headers=_build_api_request_headers())
     response.raise_for_status()
     return response.json()
 
@@ -138,7 +138,7 @@ def upscale_image(generated_image_id: str, upscale_multiplier: float = 1.5,
     }
     response = requests.post(
         "https://cloud.leonardo.ai/api/rest/v1/variations/universal-upscaler",
-        headers=_make_headers(),
+        headers=_build_api_request_headers(),
         data=json.dumps(payload),
     )
     response.raise_for_status()
@@ -147,10 +147,10 @@ def upscale_image(generated_image_id: str, upscale_multiplier: float = 1.5,
 
 if __name__ == "__main__":
     # Example usage: this will not run properly without network access.
-    prompt_phoenix = (
+    sample_phoenix_prompt = (
         "Ultra-detailed cyberpunk anime female, adult 25-35, Bengus-style anatomy, "
         "crisp angular lines, neon teal/indigo/electric blue rim light, rain city bokeh, "
         "no pink, no rainbow, no logos, no text."
     )
-    result = generate_images_phoenix(prompt_phoenix)
-    print(json.dumps(result, indent=2))
+    sample_generation_result = generate_images_phoenix(sample_phoenix_prompt)
+    print(json.dumps(sample_generation_result, indent=2))

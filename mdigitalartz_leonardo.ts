@@ -159,12 +159,12 @@ export async function upscaleImage(
 }
 
 // Example usage: these calls will not execute in this environment due to lack of network access.
-async function example() {
-  const prompt =
+async function runExampleGeneration() {
+  const examplePrompt =
     'Ultra-detailed cyberpunk anime female, adult 25-35, Bengus-style anatomy, crisp angular lines, neon teal/indigo/electric blue rim light, rain city bokeh, no pink, no rainbow, no logos, no text.';
-  const result = await generateImagesPhoenix(prompt);
-  console.log(result);
+  const exampleGenerationResult = await generateImagesPhoenix(examplePrompt);
+  console.log(exampleGenerationResult);
 }
 
 // Uncomment the following line to run the example when executing this script in a Node environment.
-// example().catch(console.error);
+// runExampleGeneration().catch(console.error);
