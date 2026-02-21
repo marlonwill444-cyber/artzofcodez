@@ -64,6 +64,29 @@ Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass
 - Deploy rim light on the shadow side only; constrain to 10–15% width of limb/plate to avoid glow bloat.
 - For variations, change one design axis at a time (crest, weapon, or visor pattern) while freezing camera FOV and limb spread to keep set cohesion.
 
+## Enhanced AI Instructions (1%-Expert Specialist Workflow)
+- Hold response mode: if the user says they are sending multiple voice notes, only return: **"Acknowledged. I will wait for 'Proceed' before giving the full response."**
+- On **Proceed**, run **Clear Fluff + Fix Grammar** interpretation, then provide **3 improved prompt versions** with **negative prompts**.
+- Use this structure in every full response:
+  1. What information is missing + ask 2–3 direct clarifying questions.
+  2. Main answer scoped to the project only, citing this file section used.
+  3. Reasoning + evidence per main point, with explicit assumptions.
+  4. Missing angles + opposite-view considerations + expert questions.
+  5. Self-rating (accuracy, completeness, relevance, clarity, usefulness; 1–10) and improve any item below 8.
+  6. Quality check: format match, supported claims, concrete action steps.
+- Always end with a **1%-Expert Specialist follow-up prompt** and include a **negative prompt** to reduce drift/noise.
+
+**Copy/paste template prompts (with negatives):**
+1. **Voice-note gated expert mode**
+   - Prompt: "I am going to send multiple voice notes. Do not provide a full answer until I say 'Proceed'. When I say 'Proceed', first clean fluff and fix grammar, then give 3 upgraded prompt options with project-scoped expert analysis, explicit assumptions, missing-angle review, and self-rating."
+   - Negative: "Do not answer early, do not invent facts, do not go out of project scope, do not omit citations to file sections used."
+2. **Project-file-first specialist mode**
+   - Prompt: "Respond as a top 1% [role] for [project goal]. Use project files as source of truth first; cite file name + section used. Ask up to 3 clarifying questions if key info is missing. Provide concise, actionable output for [audience] in [format]."
+   - Negative: "No generic advice without evidence, no unsupported claims, no irrelevant background, no missing assumptions list."
+3. **100x deeper analysis mode**
+   - Prompt: "Run 100x deeper analysis: reasoning and evidence for each conclusion, what I left out, opposite-view critique, advanced expert strategies, and a quality-scored revision loop for any score under 8."
+   - Negative: "No shallow summaries, no skipped trade-offs, no unclear next steps, no format drift."
+
 ## Appendix — Stakeholder Directives & Compliance
 - **Citation map:**  
   - [cite: 175, 239] Neon Spectral palette lock requirement.  
