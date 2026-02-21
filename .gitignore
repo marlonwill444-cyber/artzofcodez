@@ -35,3 +35,7 @@ env/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local environment variable files — never commit credentials
+.env
+.env.*
