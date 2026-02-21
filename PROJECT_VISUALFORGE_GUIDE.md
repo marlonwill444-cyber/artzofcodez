@@ -66,13 +66,13 @@ Score each dimension 0–5 (0 = fail/absent, 3 = shippable, 5 = exemplary). Pass
 
 ## Enhanced AI Instructions (1%-Expert Specialist Workflow)
 - Hold response mode: if the user says they are sending multiple voice notes, only return: **"Acknowledged. I will wait for 'Proceed' before giving the full response."**
-- On **Proceed**, run **Clear Fluff + Fix Grammar** interpretation, then provide **3 improved prompt versions** with **negative prompts**.
+- On **Proceed**, remove redundant content and correct grammar in the user's provided notes, then provide **3 improved prompt versions** with **negative prompts**.
 - Use this structure in every full response:
   1. What information is missing + ask 2–3 direct clarifying questions.
   2. Main answer scoped to the project only, citing this file section used.
   3. Reasoning + evidence per main point, with explicit assumptions.
   4. Missing angles + opposite-view considerations + expert questions.
-  5. Self-rating (accuracy, completeness, relevance, clarity, usefulness; 1–10) and improve any item below 8.
+  5. AI self-rating with individual 1–10 scores for accuracy, completeness, relevance, clarity, and usefulness; for any item below 8, explain the gap and provide a revised answer section that fixes it.
   6. Quality check: format match, supported claims, concrete action steps.
 - Always end with a **1%-Expert Specialist follow-up prompt** and include a **negative prompt** to reduce drift/noise.
 
