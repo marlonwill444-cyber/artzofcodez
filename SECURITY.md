@@ -1,21 +1,30 @@
 # Security Policy
 
-## Supported Versions
+## Credential Hygiene — Never Commit Secrets
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+API keys, tokens, and passwords **must never be committed to source code**.
+All scripts in this repository load credentials exclusively from environment
+variables:
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| Variable | Used by |
+| -------- | ------- |
+| `LEONARDO_API_KEY` | `mdigitalartz_leonardo.py`, `mdigitalartz_leonardo.ts`, `generate_aether_core.py` |
+
+Set the variable in your shell (or a local `.env` file that is listed in
+`.gitignore`) before running any script:
+
+```bash
+export LEONARDO_API_KEY="<your-key>"
+python mdigitalartz_leonardo.py
+```
+
+If you accidentally commit a key, **revoke it immediately** in the Leonardo
+dashboard and generate a new one.
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Please open a **private** GitHub Security Advisory (use the
+"Report a vulnerability" button on the Security tab) rather than filing a
+public issue. You can expect an acknowledgement within 72 hours and a status
+update within 7 days. If a vulnerability is confirmed, a fix will be issued as
+soon as possible; if declined, a clear explanation will be provided.

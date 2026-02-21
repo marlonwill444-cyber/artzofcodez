@@ -12,9 +12,13 @@
 
 import axios from 'axios';
 
-// Your Leonardo Production API key. Keep it secret. You could also load it
-// from an environment variable like process.env.LEONARDO_API_KEY.
-const API_KEY: string = 'cd8d7691-5ec5-48e1-9c6b-7160900f59a5';
+// Your Leonardo Production API key — loaded from the LEONARDO_API_KEY
+// environment variable. Never hard-code this value; set it in your shell or
+// secrets manager before running this script.
+const API_KEY: string = process.env.LEONARDO_API_KEY as string;
+if (!API_KEY) {
+  throw new Error('LEONARDO_API_KEY environment variable is not set.');
+}
 
 const PHOENIX_MODEL_ID = 'de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3';
 const ANIME_XL_MODEL_ID = 'e71a1c2f-4f80-4800-934f-2c68979d8cc8';

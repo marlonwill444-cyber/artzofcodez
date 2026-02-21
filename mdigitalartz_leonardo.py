@@ -10,17 +10,23 @@ environment with network access.
 """
 
 import json
+import os
 from typing import Dict, Any
 
 import requests
 
 
-API_KEY = "cd8d7691-5ec5-48e1-9c6b-7160900f59a5"
+API_KEY = os.environ.get("LEONARDO_API_KEY")
 """
-Your Leonardo Production API key. Keep this value secret. You can also set
-this value via an environment variable (e.g., LEONARDO_API_KEY) and read
-`os.environ["LEONARDO_API_KEY"]` instead of hard‑coding it here.
+Your Leonardo Production API key — loaded from the LEONARDO_API_KEY environment
+variable. Never hard-code this value; set it in your shell or secrets manager
+before running this script.
 """
+if not API_KEY:
+    raise EnvironmentError(
+        "LEONARDO_API_KEY environment variable is not set. "
+        "Export it before running this script."
+    )
 
 PHOENIX_MODEL_ID = "de7d3faf-762f-48e0-b3b7-9d0ac3a3fcf3"
 ANIME_XL_MODEL_ID = "e71a1c2f-4f80-4800-934f-2c68979d8cc8"
